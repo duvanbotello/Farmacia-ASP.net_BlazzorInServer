@@ -1,15 +1,10 @@
 ﻿@page
-@using Microsoft.AspNetCore.Identity
-@attribute [IgnoreAntiforgeryToken]
-@inject SignInManager<IdentityUser> SignInManager
-@functions {
-    public async Task<IActionResult> OnPost()
-    {
-        if (SignInManager.IsSignedIn(User))
-        {
-            await SignInManager.SignOutAsync();
-        }
-
-        return Redirect("~/");
-    }
+@model LogoutModel
+@{
+    ViewData["Title"] = "Cerrar Sesion";
 }
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    <p>Has salido exitosamente de la aplicación.</p>
+</header>

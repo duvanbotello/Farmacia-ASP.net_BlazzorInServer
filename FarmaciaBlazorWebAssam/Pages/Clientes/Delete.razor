@@ -1,4 +1,5 @@
 ﻿@page "/eliminar-cliente/{Id:int}"
+@attribute [Authorize]
 @inject NavigationManager nv;
 @using System.Net.Http
 @using System.Net.Http.Json

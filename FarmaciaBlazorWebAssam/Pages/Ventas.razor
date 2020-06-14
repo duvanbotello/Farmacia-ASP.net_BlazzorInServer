@@ -1,0 +1,115 @@
+﻿@page "/ventas"
+@attribute [Authorize]
+<h3>Area de ventas</h3>
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Realizar Nueva Venta</h1>
+    </div>
+
+
+    <div class="border pt-2 pl-2 pr-2">
+
+        <div class="form-group row">
+            <div class="col-sm-12 mb-6 mb-sm-0">
+                <label>Numero Identidad de Cliente: </label>
+                <input type="number" onkeypress="evenEnter(event)" class="form-control form-control-user"
+                       id="numCliente" placeholder="Numero Identidad de Cliente">
+            </div>
+        </div>
+
+        <div class="border pt-2 pl-2 pr-2 text-center">
+            <label>Datos de Cliente: </label>
+            <hr>
+            <div class="form-group row">
+                <div class="col-sm-3 mb-3 mb-sm-0">
+
+                    <input type="text" class="form-control form-control-user" id="cli_tipo"
+                           placeholder="Tipo Documento" disabled>
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+
+                    <input type="number" class="form-control form-control-user" id="cli_documento"
+                           placeholder="Documento" disabled>
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+
+                    <input type="text" class="form-control form-control-user" id="cli_nombre"
+                           placeholder="Nombre Cliente" disabled>
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+
+                    <input type="text" class="form-control form-control-user" id="cli_apellido"
+                           placeholder="Apellido Cliente" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="border mt-2 pt-2 pl-2 pr-2 text-center">
+            <label>Seleccion de Productos: </label>
+            <div class="form-group row">
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    <label>Ingrese Codigo Producto: </label>
+                    <input type="text" onkeypress="evenEnterProductos(event)" class="form-control form-control-user" id="prod_id" name="prod_id"
+                           placeholder="Ingresar Codigo Producto">
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    <label>Ingrese Nombre: </label>
+                    <input type="text" onkeypress="productoCompletar(event)" class="form-control form-control-user" id="prod_nombre" name="prod_nombre" placeholder="Nombre de producto">
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    <label>Ingrese Cantidad: </label>
+                    <input type="text" onkeypress="evenEnterProductos(event)" class="form-control form-control-user" id="pro_cantidad" placeholder="Cantidad">
+                </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    <label>Opcion </label>
+                    <a onclick="EnterProducto()" class="btn btn-success btn-user btn-block text-white">
+                        Insertar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio unit.</th>
+                            <th>Subtotal.</th>
+                            <th>Accion.</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoProductos">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="border pt-2 pl-2 pr-2 text-center">
+            <label>Detalles de Venta: </label>
+            <hr>
+            <div class="form-group row">
+                <div class="col-sm-12 mb-3 mb-sm-0">
+                    <label>Total Compra: </label>
+                    <input type="number" class="form-control form-control-user text-center" id="venta_total" placeholder="Suma" disabled>
+                </div>
+            </div>
+        </div>
+
+        <a onclick="RealizarVenta()" class="btn btn-primary btn-user btn-block mt-3 mb-2 text-white">Realizar Venta</a>
+        <a href="http://localhost/SistemaInventarioFacturacion/Ventas/consultarVentas" class="btn btn-secondary btn-user btn-block mt-3 mb-2 text-white">Consultar Ventas</a>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+@code {
+
+}

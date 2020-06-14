@@ -1,7 +1,159 @@
 ﻿@page "/"
+@attribute [Authorize]
 
-<h1>Hello, world!</h1>
+<h1>Gestion de Servicios Farmaceuticos</h1>
 
-Welcome to your new app.
+<div class="container-fluid">
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nueva Categoría</div>
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/categoria.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="#" data-toggle="modal" data-target="#registerCategoria"
+                               class="btn btn-secondary">Añadir Categoría</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="text-center col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Nuevo Proovedor</div>
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/proveedor.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="#" data-toggle="modal" data-target="#registerProveedor"
+                               class="btn btn-secondary">Añadir Proveedor</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ">Nuevo Cliente</div>
+
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/cliente.png" alt="..."
+                                 class="img-rounded">
+
+                            <a type="button" href="#" data-toggle="modal" data-target="#registerCLiente"
+                               class="btn btn-secondary">Añadir Cliente</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Nuevo Producto</div>
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/producto.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="#" data-toggle="modal" data-target="#registerProducto" class="btn btn-secondary"
+                               onclick="getcaterogias()">Añadir Producto</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nueva Compra</div>
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/compra.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="https://drogueria-isofer.com/SistemaInventarioFacturacion/Compras/compras" class="btn btn-secondary" onclick="getproveedor()">Nueva Compra</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="text-center col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Nuevo Venta</div>
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/venta.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="https://drogueria-isofer.com/SistemaInventarioFacturacion/Ventas/ventas" class="btn btn-secondary">Nueva Venta</a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ">Nuevo Corte De Caja</div>
+
+                            <img src="https://drogueria-isofer.com/SistemaInventarioFacturacion/Resource/desboard/img/cortecaja.png" alt="..."
+                                 class="img-rounded">
+                            <a type="button" href="https://drogueria-isofer.com/SistemaInventarioFacturacion/Ccaja/Ccaja" class="btn btn-secondary">Nuevo Corte</a>
+
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
