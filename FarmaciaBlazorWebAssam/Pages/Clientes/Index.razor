@@ -1,0 +1,59 @@
+﻿@page "/clientes"
+@using FarmaciaBlazorWebAssam.Data;
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+<h3>Area de clientes</h3>
+
+<div class="mb-4">
+    <a class="btn btn-success" href="nuevo-cliente">Nuevo Cliente</a>
+</div>
+
+@if (oRespuesta != null && oRespuesta.Data != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Celular</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Fecha Nacimiento</th>
+                <th>Gestion De Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in oRespuesta.Data)
+            {
+                <tr>
+                    <td>@cliente.Id</td>
+                    <td>@cliente.Nombres</td>
+                    <td>@cliente.Apellidos</td>
+                    <td>@cliente.Celular</td>
+                    <td>@cliente.Telefono</td>
+                    <td>@cliente.Correo</td>
+                    <td>@cliente.FechaNac</td>
+                    <td>
+                        <a href="/editar-cliente/@cliente.Id" class="btn btn-success">Editar</a>
+                        <a href="/eliminar-cliente/@cliente.Id" class="btn btn-danger">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <text>Cargando</text>
+}
+
+@code {
+    public string Url = "/api/Cliente/";
+    public Respuestas<List<Cliente>> oRespuesta = new Respuestas<List<Cliente>>();
+
+    protected override async Task OnInitializedAsync() =>
+        oRespuesta = await Http.GetFromJsonAsync<Respuestas<List<Cliente>>>(Url);
+}

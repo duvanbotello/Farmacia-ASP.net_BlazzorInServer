@@ -1,0 +1,92 @@
+﻿@page "/nuevo-cliente"
+@page "/editar-cliente/{Id:int}"
+@using Data;
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager Navegador
+
+<h3>Registrar un nuevo cliente</h3>
+
+<EditForm Model="@oCliente">
+    <div class="container">
+        <div class="form-group row mb-1">
+            <label>Nombres:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCliente.Nombres"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label>Apellidos:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCliente.Apellidos"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label>Celular:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCliente.Celular"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label>Telefono:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCliente.Telefono"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label>Correo:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCliente.Correo"></InputText>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <label>Fecha Nacimiento:</label>
+            <div class="col-sm-9">
+                <InputDate class="form-control" @bind-Value="@oCliente.FechaNac"></InputDate>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-sm-9">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    Cliente oCliente = new Cliente();
+    Respuestas<object> oRespuesta = new Respuestas<object>();
+    Respuestas<Cliente> oRespuestaCliente = new Respuestas<Cliente>();
+    public string Url = "/api/Cliente";
+
+    private async Task Save()
+    {
+        if (Id != 0)
+        {
+            var Respuesta = await Http.PutAsJsonAsync<Cliente>(Url, oCliente);
+            oRespuesta = Respuesta.Content.ReadFromJsonAsync<Respuestas<object>>().Result;
+
+        }
+        else
+        {
+            var Respuesta = await Http.PostAsJsonAsync<Cliente>(Url, oCliente);
+            oRespuesta = Respuesta.Content.ReadFromJsonAsync<Respuestas<object>>().Result;
+        }
+
+        Navegador.NavigateTo("clientes");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != 0)
+        {
+            oRespuestaCliente = await Http.GetFromJsonAsync<Respuestas<Cliente>>(Url + "/" + Id);
+            oCliente = oRespuestaCliente.Data;
+        }
+    }
+
+}

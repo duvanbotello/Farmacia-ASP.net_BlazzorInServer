@@ -1,0 +1,30 @@
+﻿@page "/eliminar-cliente/{Id:int}"
+@inject NavigationManager nv;
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+@using Data;
+
+<h3>Eliminar Cliente</h3>
+
+<p>¿Desear Eliminar el Cliente?</p>
+<div>
+    <button class="btn btn-danger" @onclick="Eliminar">Eliminar</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    Respuestas<object> oRespuesta = new Respuestas<object>();
+    public string Url = "/api/Cliente";
+
+    private async Task Eliminar()
+    {
+
+        var Respuesta = await Http.DeleteAsync(Url + "/" + Id);
+        oRespuesta = Respuesta.Content.ReadFromJsonAsync<Respuestas<object>>().Result;
+        nv.NavigateTo("clientes");
+    }
+}
